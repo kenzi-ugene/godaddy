@@ -1,4 +1,213 @@
-<section style="color: blue; height: 100 vh;" >
-  <p style="color: red;">Im Jirenge</p>
-</section>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to My Site</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .main-content {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .feature-card {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-card h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        footer {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            color: #666;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            background: #2ecc71;
+            border-radius: 50%;
+            margin-right: 8px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(46, 204, 113, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0); }
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 10px; }
+            h1 { font-size: 2rem; }
+            .features { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚀 Welcome to My Website</h1>
+            <p class="subtitle">
+                <span class="status-indicator"></span>
+                Server is running successfully with PHP 7.4
+            </p>
+        </header>
+
+        <main class="main-content">
+            <div class="cta-section">
+                <h2>Your Development Environment is Ready!</h2>
+                <p style="margin: 1rem 0; color: #666;">
+                    This is a sample HTML page to test your Homestead setup.
+                </p>
+            </div>
+
+            <div class="features">
+                <div class="feature-card">
+                    <h3>🔧 Development Ready</h3>
+                    <p>Your Homestead environment is configured and running with PHP 7.4. You can now start developing your Laravel applications.</p>
+                </div>
+
+                <div class="feature-card">
+                    <h3>🌐 Web Server Active</h3>
+                    <p>Nginx is successfully serving your files. The Bad Gateway error has been resolved and your web server is functioning properly.</p>
+                </div>
+
+                <div class="feature-card">
+                    <h3>📱 Responsive Design</h3>
+                    <p>This sample page is fully responsive and will look great on all devices, from mobile phones to desktop computers.</p>
+                </div>
+            </div>
+
+            <div class="cta-section">
+                <a href="#" class="btn">Start Building Something Amazing</a>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2024 Your Website. Built with ❤️ on Homestead.</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem;">
+                PHP Version: <?php echo phpversion(); ?> | 
+                Server: <?php echo $_SERVER['SERVER_SOFTWARE'] ?? 'Unknown'; ?>
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // Simple JavaScript to make the page interactive
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add a simple click handler to the CTA button
+            const ctaButton = document.querySelector('.btn');
+            ctaButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('🎉 Great! Your JavaScript is working too!');
+            });
+
+            // Add some dynamic content
+            const statusIndicator = document.querySelector('.status-indicator');
+            setInterval(() => {
+                statusIndicator.style.background = statusIndicator.style.background === 'rgb(46, 204, 113)' 
+                    ? '#e74c3c' 
+                    : '#2ecc71';
+            }, 3000);
+        });
+    </script>
+</body>
+</html>
