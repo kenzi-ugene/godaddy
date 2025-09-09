@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to My Site</title>
+    <title>🐱 Cat Photo Playground</title>
     <style>
         * {
             margin: 0;
@@ -12,202 +12,532 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(45deg, #ff9a9e, #fecfef, #fecfef, #ff9a9e);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
             min-height: 100vh;
+            padding: 20px;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
         }
 
         header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 2rem;
-            margin-bottom: 2rem;
             text-align: center;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            margin-bottom: 3rem;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
 
         h1 {
-            color: #2c3e50;
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-            font-weight: 700;
+            font-size: 3rem;
+            color: #ff6b6b;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .subtitle {
-            color: #7f8c8d;
             font-size: 1.2rem;
-            margin-bottom: 2rem;
-        }
-
-        .main-content {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-        }
-
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-
-        .feature-card {
-            background: #f8f9fa;
-            padding: 1.5rem;
-            border-radius: 10px;
-            border-left: 4px solid #667eea;
-            transition: transform 0.3s ease;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .feature-card h3 {
-            color: #2c3e50;
-            margin-bottom: 1rem;
-        }
-
-        .feature-card p {
             color: #666;
-            line-height: 1.6;
+            margin-bottom: 2rem;
         }
 
-        .cta-section {
-            text-align: center;
-            padding: 2rem 0;
+        .controls {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
         }
 
         .btn {
-            display: inline-block;
-            background: linear-gradient(45deg, #667eea, #764ba2);
+            background: linear-gradient(45deg, #ff6b6b, #ffa726);
             color: white;
-            padding: 12px 30px;
-            text-decoration: none;
+            border: none;
+            padding: 12px 24px;
             border-radius: 25px;
-            font-weight: 600;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
         }
 
         .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
         }
 
-        footer {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 1.5rem;
-            text-align: center;
-            color: #666;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-        }
-
-        .status-indicator {
+        .file-input-wrapper {
+            position: relative;
+            overflow: hidden;
             display: inline-block;
-            width: 12px;
-            height: 12px;
-            background: #2ecc71;
-            border-radius: 50%;
-            margin-right: 8px;
-            animation: pulse 2s infinite;
         }
 
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.7); }
-            70% { box-shadow: 0 0 0 10px rgba(46, 204, 113, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0); }
+        .file-input {
+            position: absolute;
+            left: -9999px;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .cat-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cat-card:hover {
+            transform: translateY(-10px) rotate(1deg);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .cat-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .cat-image:hover {
+            transform: scale(1.05);
+        }
+
+        .cat-info {
+            padding: 1rem 0;
+            text-align: center;
+        }
+
+        .cat-name {
+            font-size: 1.5rem;
+            color: #ff6b6b;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .cat-description {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .image-effects {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .effect-btn {
+            background: #4ecdc4;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.2s ease;
+        }
+
+        .effect-btn:hover {
+            background: #45b7b8;
+            transform: scale(1.1);
+        }
+
+        /* Image Effects */
+        .filter-grayscale { filter: grayscale(100%); }
+        .filter-sepia { filter: sepia(100%); }
+        .filter-blur { filter: blur(3px); }
+        .filter-brightness { filter: brightness(150%); }
+        .filter-contrast { filter: contrast(150%); }
+        .filter-hue-rotate { filter: hue-rotate(180deg); }
+        .filter-invert { filter: invert(100%); }
+        .filter-saturate { filter: saturate(200%); }
+
+        .upload-area {
+            background: rgba(255, 255, 255, 0.9);
+            border: 3px dashed #ff6b6b;
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .upload-area:hover {
+            background: rgba(255, 107, 107, 0.1);
+            border-color: #ff5252;
+        }
+
+        .upload-area.dragover {
+            background: rgba(255, 107, 107, 0.2);
+            border-color: #ff5252;
+            transform: scale(1.02);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .modal img {
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .floating-hearts {
+            position: fixed;
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        @keyframes float-up {
+            0% {
+                opacity: 1;
+                transform: translateY(0) rotate(0deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100px) rotate(360deg);
+            }
+        }
+
+        .heart {
+            color: #ff6b6b;
+            font-size: 20px;
+            animation: float-up 2s ease-out forwards;
         }
 
         @media (max-width: 768px) {
-            .container { padding: 10px; }
             h1 { font-size: 2rem; }
-            .features { grid-template-columns: 1fr; }
+            .gallery { grid-template-columns: 1fr; }
+            .controls { flex-direction: column; align-items: center; }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>🚀 Welcome to My Website</h1>
-            <p class="subtitle">
-                <span class="status-indicator"></span>
-                Server is running successfully with PHP 7.4
-            </p>
+            <h1>🐱 Cat Photo Playground 🐱</h1>
+            <p class="subtitle">Upload your cat photos and play with awesome effects!</p>
+            
+            <div class="controls">
+                <div class="file-input-wrapper">
+                    <input type="file" id="catFileInput" class="file-input" accept="image/*" multiple>
+                    <label for="catFileInput" class="btn">📁 Upload Cat Photos</label>
+                </div>
+                <button class="btn" onclick="addRandomCat()">🎲 Add Random Cat</button>
+                <button class="btn" onclick="clearGallery()">🗑️ Clear Gallery</button>
+                <button class="btn" onclick="shuffleGallery()">🔀 Shuffle Cats</button>
+            </div>
         </header>
 
-        <main class="main-content">
-            <div class="cta-section">
-                <h2>Your Development Environment is Ready!</h2>
-                <p style="margin: 1rem 0; color: #666;">
-                    This is a sample HTML page to test your Homestead setup.
-                </p>
-            </div>
+        <div class="upload-area" id="uploadArea">
+            <h3>🐾 Drop your cat photos here or click to upload! 🐾</h3>
+            <p>Supports JPG, PNG, GIF formats</p>
+        </div>
 
-            <div class="features">
-                <div class="feature-card">
-                    <h3>🔧 Development Ready</h3>
-                    <p>Your Homestead environment is configured and running with PHP 7.4. You can now start developing your Laravel applications.</p>
-                </div>
+        <div class="gallery" id="gallery">
+            <!-- Sample cats will be added here -->
+        </div>
+    </div>
 
-                <div class="feature-card">
-                    <h3>🌐 Web Server Active</h3>
-                    <p>Nginx is successfully serving your files. The Bad Gateway error has been resolved and your web server is functioning properly.</p>
-                </div>
-
-                <div class="feature-card">
-                    <h3>📱 Responsive Design</h3>
-                    <p>This sample page is fully responsive and will look great on all devices, from mobile phones to desktop computers.</p>
-                </div>
-            </div>
-
-            <div class="cta-section">
-                <a href="#" class="btn">Start Building Something Amazing</a>
-            </div>
-        </main>
-
-        <footer>
-            <p>&copy; 2024 Your Website. Built with ❤️ on Homestead.</p>
-            <p style="margin-top: 0.5rem; font-size: 0.9rem;">
-                PHP Version: <?php echo phpversion(); ?> | 
-                Server: <?php echo $_SERVER['SERVER_SOFTWARE'] ?? 'Unknown'; ?>
-            </p>
-        </footer>
+    <!-- Modal for full-size image view -->
+    <div id="imageModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div class="modal-content">
+            <img id="modalImage" src="" alt="Full size cat photo">
+        </div>
     </div>
 
     <script>
-        // Simple JavaScript to make the page interactive
-        document.addEventListener('DOMContentLoaded', function() {
-            // Add a simple click handler to the CTA button
-            const ctaButton = document.querySelector('.btn');
-            ctaButton.addEventListener('click', function(e) {
-                e.preventDefault();
-                alert('🎉 Great! Your JavaScript is working too!');
-            });
+        // Sample cat data (using placeholder images)
+        const sampleCats = [
+            {
+                name: "Whiskers",
+                description: "A fluffy orange tabby who loves sunbathing",
+                image: "https://placekitten.com/400/300"
+            },
+            {
+                name: "Luna",
+                description: "A mysterious black cat with bright green eyes",
+                image: "https://placekitten.com/401/300"
+            },
+            {
+                name: "Mittens",
+                description: "A playful kitten with white paws",
+                image: "https://placekitten.com/402/300"
+            }
+        ];
 
-            // Add some dynamic content
-            const statusIndicator = document.querySelector('.status-indicator');
-            setInterval(() => {
-                statusIndicator.style.background = statusIndicator.style.background === 'rgb(46, 204, 113)' 
-                    ? '#e74c3c' 
-                    : '#2ecc71';
-            }, 3000);
+        let catCounter = 0;
+
+        // Initialize with sample cats
+        window.addEventListener('DOMContentLoaded', function() {
+            sampleCats.forEach(cat => addCatToGallery(cat.image, cat.name, cat.description));
         });
+
+        // File input handling
+        document.getElementById('catFileInput').addEventListener('change', function(e) {
+            handleFiles(e.target.files);
+        });
+
+        // Drag and drop functionality
+        const uploadArea = document.getElementById('uploadArea');
+        
+        uploadArea.addEventListener('click', function() {
+            document.getElementById('catFileInput').click();
+        });
+
+        uploadArea.addEventListener('dragover', function(e) {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+
+        uploadArea.addEventListener('dragleave', function(e) {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+        });
+
+        uploadArea.addEventListener('drop', function(e) {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            handleFiles(e.dataTransfer.files);
+        });
+
+        function handleFiles(files) {
+            Array.from(files).forEach(file => {
+                if (file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const catNames = ['Fluffy', 'Shadow', 'Ginger', 'Snowball', 'Tiger', 'Princess', 'Max', 'Bella', 'Charlie', 'Mia'];
+                        const catDescriptions = [
+                            'A curious cat who loves exploring',
+                            'A sleepy cat who enjoys long naps',
+                            'An energetic cat who loves to play',
+                            'A gentle cat who loves cuddles',
+                            'A smart cat who knows many tricks'
+                        ];
+                        
+                        const randomName = catNames[Math.floor(Math.random() * catNames.length)];
+                        const randomDescription = catDescriptions[Math.floor(Math.random() * catDescriptions.length)];
+                        
+                        addCatToGallery(e.target.result, randomName, randomDescription);
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        }
+
+        function addCatToGallery(imageSrc, name, description) {
+            catCounter++;
+            const gallery = document.getElementById('gallery');
+            
+            const catCard = document.createElement('div');
+            catCard.className = 'cat-card';
+            catCard.innerHTML = `
+                <img src="${imageSrc}" alt="${name}" class="cat-image" onclick="openModal('${imageSrc}')">
+                <div class="cat-info">
+                    <div class="cat-name">${name}</div>
+                    <div class="cat-description">${description}</div>
+                    <div class="image-effects">
+                        <button class="effect-btn" onclick="applyEffect(this, 'filter-grayscale')">B&W</button>
+                        <button class="effect-btn" onclick="applyEffect(this, 'filter-sepia')">Sepia</button>
+                        <button class="effect-btn" onclick="applyEffect(this, 'filter-blur')">Blur</button>
+                        <button class="effect-btn" onclick="applyEffect(this, 'filter-brightness')">Bright</button>
+                        <button class="effect-btn" onclick="applyEffect(this, 'filter-hue-rotate')">Rainbow</button>
+                        <button class="effect-btn" onclick="applyEffect(this, 'filter-invert')">Invert</button>
+                        <button class="effect-btn" onclick="clearEffects(this)">Reset</button>
+                        <button class="effect-btn" onclick="removeCat(this)" style="background: #e74c3c;">Remove</button>
+                    </div>
+                </div>
+            `;
+            
+            gallery.appendChild(catCard);
+            
+            // Add entrance animation
+            setTimeout(() => {
+                catCard.style.animation = 'slideIn 0.5s ease-out';
+            }, 100);
+            
+            createHearts(catCard);
+        }
+
+        function applyEffect(button, effectClass) {
+            const catCard = button.closest('.cat-card');
+            const image = catCard.querySelector('.cat-image');
+            
+            // Remove all existing effects
+            image.className = 'cat-image';
+            // Add new effect
+            image.classList.add(effectClass);
+        }
+
+        function clearEffects(button) {
+            const catCard = button.closest('.cat-card');
+            const image = catCard.querySelector('.cat-image');
+            image.className = 'cat-image';
+        }
+
+        function removeCat(button) {
+            const catCard = button.closest('.cat-card');
+            catCard.style.animation = 'fadeOut 0.5s ease-out forwards';
+            setTimeout(() => {
+                catCard.remove();
+            }, 500);
+        }
+
+        function addRandomCat() {
+            const randomId = Math.floor(Math.random() * 1000) + 100;
+            const catNames = ['Smokey', 'Patches', 'Oreo', 'Coco', 'Pepper', 'Honey', 'Storm', 'Angel'];
+            const catDescriptions = [
+                'A mysterious cat with a secret agenda',
+                'A lazy cat who rules the house',
+                'An adventurous cat who loves the outdoors',
+                'A social cat who loves meeting new friends'
+            ];
+            
+            const randomName = catNames[Math.floor(Math.random() * catNames.length)];
+            const randomDescription = catDescriptions[Math.floor(Math.random() * catDescriptions.length)];
+            
+            addCatToGallery(`https://placekitten.com/${randomId}/300`, randomName, randomDescription);
+        }
+
+        function clearGallery() {
+            if (confirm('Are you sure you want to remove all cats? 🥺')) {
+                document.getElementById('gallery').innerHTML = '';
+            }
+        }
+
+        function shuffleGallery() {
+            const gallery = document.getElementById('gallery');
+            const cards = Array.from(gallery.children);
+            
+            // Shuffle array
+            for (let i = cards.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [cards[i], cards[j]] = [cards[j], cards[i]];
+            }
+            
+            // Re-append in new order
+            cards.forEach(card => gallery.appendChild(card));
+        }
+
+        function openModal(imageSrc) {
+            document.getElementById('modalImage').src = imageSrc;
+            document.getElementById('imageModal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('imageModal').style.display = 'none';
+        }
+
+        // Close modal when clicking outside
+        window.addEventListener('click', function(e) {
+            const modal = document.getElementById('imageModal');
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        function createHearts(element) {
+            for (let i = 0; i < 5; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.innerHTML = '💖';
+                    heart.className = 'heart';
+                    heart.style.position = 'absolute';
+                    heart.style.left = Math.random() * 100 + '%';
+                    heart.style.top = Math.random() * 100 + '%';
+                    heart.style.pointerEvents = 'none';
+                    heart.style.zIndex = '999';
+                    
+                    element.appendChild(heart);
+                    
+                    setTimeout(() => {
+                        heart.remove();
+                    }, 2000);
+                }, i * 200);
+            }
+        }
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            } else if (e.key === 'r' || e.key === 'R') {
+                addRandomCat();
+            } else if (e.key === 's' || e.key === 'S') {
+                shuffleGallery();
+            }
+        });
+
+        // Add some CSS animations
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from { transform: translateY(50px); opacity: 0; }
+                to { transform: translateY(0); opacity: 1; }
+            }
+            @keyframes fadeOut {
+                from { transform: scale(1); opacity: 1; }
+                to { transform: scale(0.8); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
     </script>
 </body>
 </html>
